@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Agent } from '@/app/api/agents/route';
+import { Agent } from '@prisma/client';
 
 export default function AdminPage() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<{
-    id: string;
-    name: string;
-    role: string;
-    status: 'active' | 'inactive';
-  }>({
-    id: '',
+  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'>>({
     name: '',
-    role: '',
-    status: 'active'
+    phoneNumber: '',
+    location: '',
+    status: 'active',
+    telegram: '',
   });
 
   // Fetch agents
@@ -77,10 +73,11 @@ export default function AdminPage() {
   // Edit agent
   const handleEdit = (agent: Agent) => {
     setFormData({
-      id: agent.id,
       name: agent.name,
-      role: agent.role,
-      status: agent.status
+      phoneNumber: agent.phoneNumber,
+      location: agent.location,
+      status: agent.status,
+      telegram: agent.telegram || '',
     });
     setIsEditing(true);
   };
@@ -88,10 +85,11 @@ export default function AdminPage() {
   // Reset form
   const resetForm = () => {
     setFormData({
-      id: '',
       name: '',
-      role: '',
-      status: 'active'
+      phoneNumber: '',
+      location: '',
+      status: 'active',
+      telegram: '',
     });
     setIsEditing(false);
     setError('');
@@ -100,7 +98,7 @@ export default function AdminPage() {
   if (isLoading) return <div className="flex justify-center p-8">Loading...</div>;
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-8">Agent Management</h1>
 
       {/* Form */}
@@ -109,7 +107,7 @@ export default function AdminPage() {
           {isEditing ? 'Edit Agent' : 'Add New Agent'}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div>
             <label className="block mb-1">Name</label>
             <input
@@ -122,13 +120,35 @@ export default function AdminPage() {
           </div>
           
           <div>
-            <label className="block mb-1">Role</label>
+            <label className="block mb-1">Phone Number</label>
             <input
-              type="text"
-              value={formData.role}
-              onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+              type="tel"
+              value={formData.phoneNumber}
+              onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
               className="w-full p-2 border rounded"
               required
+            />
+          </div>
+          
+          <div>
+            <label className="block mb-1">Location</label>
+            <input
+              type="text"
+              value={formData.location}
+              onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1">Telegram</label>
+            <input
+              type="text"
+              value={formData.telegram || ''}
+              onChange={(e) => setFormData({ ...formData, telegram: e.target.value })}
+              className="w-full p-2 border rounded"
+              placeholder="@username"
             />
           </div>
           
@@ -136,7 +156,7 @@ export default function AdminPage() {
             <label className="block mb-1">Status</label>
             <select
               value={formData.status}
-              onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' | 'inactive' })}
+              onChange={(e) => setFormData({ ...formData, status: e.target.value })}
               className="w-full p-2 border rounded"
             >
               <option value="active">Active</option>
@@ -174,7 +194,9 @@ export default function AdminPage() {
           <thead className="bg-gray-100">
             <tr>
               <th className="py-3 px-4 text-left">Name</th>
-              <th className="py-3 px-4 text-left">Role</th>
+              <th className="py-3 px-4 text-left">Phone Number</th>
+              <th className="py-3 px-4 text-left">Location</th>
+              <th className="py-3 px-4 text-left">Telegram</th>
               <th className="py-3 px-4 text-left">Status</th>
               <th className="py-3 px-4 text-left">Created At</th>
               <th className="py-3 px-4 text-left">Actions</th>
@@ -184,7 +206,9 @@ export default function AdminPage() {
             {agents.map((agent) => (
               <tr key={agent.id} className="border-t">
                 <td className="py-3 px-4">{agent.name}</td>
-                <td className="py-3 px-4">{agent.role}</td>
+                <td className="py-3 px-4">{agent.phoneNumber}</td>
+                <td className="py-3 px-4">{agent.location}</td>
+                <td className="py-3 px-4">{agent.telegram || '-'}</td>
                 <td className="py-3 px-4">
                   <span className={`px-2 py-1 rounded text-sm ${
                     agent.status === 'active' 
@@ -217,7 +241,7 @@ export default function AdminPage() {
             ))}
             {agents.length === 0 && (
               <tr>
-                <td colSpan={5} className="py-4 px-4 text-center text-gray-500">
+                <td colSpan={7} className="py-4 px-4 text-center text-gray-500">
                   No agents found
                 </td>
               </tr>
