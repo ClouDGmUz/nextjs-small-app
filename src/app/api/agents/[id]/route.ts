@@ -1,18 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-type Props = {
-  params: { id: string }
-}
-
 // GET /api/agents/{id} - Get a single agent
 export async function GET(
-  request: NextRequest,
-  { params }: Props
+  _request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
   try {
     const agent = await prisma.agent.findUnique({
-      where: { id: params.id }
+      where: { id }
     });
 
     if (!agent) {

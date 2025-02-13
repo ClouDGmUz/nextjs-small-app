@@ -1,4 +1,4 @@
-import { Agent } from '@prisma/client';
+import { Agent } from '@/lib/types';
 
 interface AgentCardProps {
   agent: Agent;

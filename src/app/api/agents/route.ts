@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { Agent } from "@/lib/types";
 
 // GET /api/agents - List all agents
 export async function GET() {
@@ -17,9 +18,11 @@ export async function GET() {
 }
 
 // POST /api/agents - Create a new agent
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest
+) {
   try {
-    const body = await request.json();
+    const body = await request.json() as Omit<Agent, 'id' | 'createdAt' | 'updatedAt'>;
     const newAgent = await prisma.agent.create({
       data: {
         name: body.name,
@@ -39,9 +42,11 @@ export async function POST(request: NextRequest) {
 }
 
 // PUT /api/agents - Update an agent
-export async function PUT(request: NextRequest) {
+export async function PUT(
+  request: NextRequest
+) {
   try {
-    const body = await request.json();
+    const body = await request.json() as Agent;
     
     if (!body.id) {
       return NextResponse.json(
@@ -71,7 +76,9 @@ export async function PUT(request: NextRequest) {
 }
 
 // DELETE /api/agents?id={id} - Delete an agent
-export async function DELETE(request: NextRequest) {
+export async function DELETE(
+  request: NextRequest
+) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 

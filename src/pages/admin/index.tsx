@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Agent } from '@prisma/client';
+import { Agent } from '@/lib/types';
 import Head from 'next/head';
 import Layout from '@/components/Layout';
 
