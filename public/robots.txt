@@ -1,0 +1,12 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://condoroil.uz/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+
+# Crawl delay to prevent server overload
+Crawl-delay: 1
