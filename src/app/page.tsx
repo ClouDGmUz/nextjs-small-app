@@ -5,17 +5,27 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
       <div className="text-center px-4">
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 animate-pulse">
-          Tez Kunda
+          Condor x Dew
         </h1>
         <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-2xl mx-auto">
           Condor &mdash; O&apos;zbekistondagi eng ishonchli va sifatli motor moylari va avtomobil mahsulotlari
         </p>
-        <Link 
-          href="/agents" 
-          className="px-8 py-3 text-lg font-semibold text-blue-600 bg-white rounded-lg hover:bg-blue-50 transition-colors duration-300 transform hover:scale-105"
-        >
-          Bizning Agentlar
-        </Link>
+        <div className="flex gap-4 justify-center">
+          <Link 
+            href="/agents" 
+            className="px-8 py-3 text-lg font-semibold text-blue-600 bg-white rounded-lg hover:bg-blue-50 transition-colors duration-300 transform hover:scale-105"
+          >
+            Bizning Agentlar
+          </Link>
+          <a 
+            href="https://dewpetroleum.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="px-8 py-3 text-lg font-semibold text-white border-2 border-white rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-300 transform hover:scale-105"
+          >
+            Dew Petroleum
+          </a>
+        </div>
       </div>
 
       {/* Animated background circles */}
