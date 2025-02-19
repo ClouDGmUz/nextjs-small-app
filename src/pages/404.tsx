@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout from '@/components/Layout';
 
 export default function NotFoundPage() {
   return (
-    <Layout>
+    <>
       <Head>
         <title>Sahifa topilmadi - Condor</title>
         <meta name="description" content="404 - Sahifa topilmadi" />
@@ -68,6 +67,6 @@ export default function NotFoundPage() {
           </p>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }

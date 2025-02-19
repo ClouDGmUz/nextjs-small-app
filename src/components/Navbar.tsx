@@ -19,16 +19,16 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-gradient-to-br from-primary via-primary-dark to-primary-dark shadow-lg backdrop-blur-sm bg-opacity-95 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex items-center">
             <Link 
               href="/"
-              className="flex items-center space-x-3"
+              className="flex items-center space-x-3 group"
             >
-              <span className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span className="h-9 w-9 bg-white bg-opacity-10 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-opacity-20 group-hover:scale-105 shadow-lg">
                 <svg
                   className="w-5 h-5 text-white"
                   fill="none"
@@ -43,20 +43,20 @@ export default function Navbar() {
                   />
                 </svg>
               </span>
-              <span className="text-xl font-bold text-gray-900">Condor</span>
+              <span className="text-xl font-bold text-white transition-all duration-300 group-hover:text-opacity-90">Condor</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden sm:flex sm:items-center sm:space-x-8">
+          <div className="hidden sm:flex sm:items-center sm:space-x-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   isActiveLink(link.href)
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                    ? 'text-primary bg-white shadow-lg transform scale-105'
+                    : 'text-white hover:bg-white/10 hover:text-white hover:scale-105'
                 }`}
               >
                 {link.label}
@@ -68,7 +68,7 @@ export default function Navbar() {
           <div className="flex items-center sm:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10 transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -108,16 +108,16 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="sm:hidden bg-white border-t">
-          <div className="pt-2 pb-3 space-y-1">
+        <div className="sm:hidden bg-primary/95 backdrop-blur-sm border-t border-white/10 transition-all duration-300">
+          <div className="pt-2 pb-3 space-y-1 px-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block px-3 py-2 text-base font-medium ${
+                className={`block px-4 py-2 rounded-lg text-base font-medium transition-all duration-300 ${
                   isActiveLink(link.href)
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                    ? 'text-primary bg-white shadow-lg transform scale-105'
+                    : 'text-white hover:bg-white/10 hover:text-white'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >

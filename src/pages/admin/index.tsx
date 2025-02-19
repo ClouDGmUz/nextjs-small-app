@@ -8,12 +8,13 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'>>({
+  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'> & { order?: number }>({
     name: '',
     phoneNumber: '',
     location: '',
     status: 'active',
     telegram: '',
+    order: 0,
   });
 
   // Fetch agents
@@ -80,6 +81,7 @@ export default function AdminPage() {
       location: agent.location,
       status: agent.status,
       telegram: agent.telegram || '',
+      order: agent.order || 0,
     });
     setIsEditing(true);
   };
@@ -92,6 +94,7 @@ export default function AdminPage() {
       location: '',
       status: 'active',
       telegram: '',
+      order: 0,
     });
     setIsEditing(false);
     setError('');
@@ -105,7 +108,7 @@ export default function AdminPage() {
           <meta name="robots" content="noindex,nofollow" />
         </Head>
         <div className="flex justify-center p-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
         </div>
       </Layout>
     );
@@ -118,89 +121,100 @@ export default function AdminPage() {
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       
-      <div className="max-w-7xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-8">Agentlarni Boshqarish</h1>
+      <div className="max-w-7xl mx-auto p-6 bg-gradient-to-br from-primary-dark via-primary to-primary-light">
+        <h1 className="text-3xl font-bold mb-8 text-white dark:text-secondary">Agentlarni Boshqarish</h1>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="mb-8 p-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">
-              {isEditing ? 'Agentni Tahrirlash' : 'Yangi Agent Qo&apos;shish'}
+        <form onSubmit={handleSubmit} className="mb-8 p-6 bg-primary-dark/90 dark:bg-primary-dark/95 backdrop-blur-sm rounded-lg shadow-xl border border-primary/20 dark:border-primary-light/20">
+          <h2 className="text-xl font-semibold mb-4 text-white dark:text-secondary">
+              {isEditing ? 'Agentni Tahrirlash' : 'Yangi Agent Qo\'shish'}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
-              <label className="block mb-1">Ism</label>
+              <label className="block mb-1 text-white dark:text-secondary">Ism</label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 bg-white/10 border border-primary/30 text-white rounded focus:ring-2 focus:ring-primary-light focus:border-primary-light"
                 required
               />
             </div>
             
             <div>
-              <label className="block mb-1">Telefon</label>
+              <label className="block mb-1 text-white dark:text-secondary">Telefon</label>
               <input
                 type="tel"
                 value={formData.phoneNumber}
                 onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 bg-white/10 border border-primary/30 text-white rounded focus:ring-2 focus:ring-primary-light focus:border-primary-light"
                 required
               />
             </div>
             
             <div>
-              <label className="block mb-1">Manzil</label>
+              <label className="block mb-1 text-white dark:text-secondary">Manzil</label>
               <input
                 type="text"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 bg-white/10 border border-primary/30 text-white rounded focus:ring-2 focus:ring-primary-light focus:border-primary-light"
                 required
               />
             </div>
 
             <div>
-              <label className="block mb-1">Telegram</label>
+              <label className="block mb-1 text-white dark:text-secondary">Telegram</label>
               <input
                 type="text"
                 value={formData.telegram || ''}
                 onChange={(e) => setFormData({ ...formData, telegram: e.target.value })}
-                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 bg-white/10 border border-primary/30 text-white rounded focus:ring-2 focus:ring-primary-light focus:border-primary-light"
                 placeholder="@username"
               />
             </div>
             
             <div>
-              <label className="block mb-1">Holati</label>
+              <label className="block mb-1 text-white dark:text-secondary">Holati</label>
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 bg-white/10 border border-primary/30 text-white rounded focus:ring-2 focus:ring-primary-light focus:border-primary-light"
               >
-                <option value="active">Faol</option>
-                <option value="inactive">Faol emas</option>
+                <option value="active" className="bg-primary-dark">Faol</option>
+                <option value="inactive" className="bg-primary-dark">Faol emas</option>
               </select>
+            </div>
+
+            <div>
+              <label className="block mb-1 text-white dark:text-secondary">Tartib raqami</label>
+              <input
+                type="number"
+                value={formData.order || 0}
+                onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
+                className="w-full p-2 bg-white/10 border border-primary/30 text-white rounded focus:ring-2 focus:ring-primary-light focus:border-primary-light"
+                min="0"
+              />
             </div>
           </div>
 
           {error && (
-            <div className="text-red-500 mt-4 p-2 bg-red-50 rounded">{error}</div>
+            <div className="text-red-400 mt-4 p-2 bg-red-900/20 rounded border border-red-800/50">{error}</div>
           )}
 
           <div className="mt-6 flex gap-2">
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transform hover:scale-105 transition-all"
+              className="px-6 py-2 bg-primary-light text-white rounded-lg hover:bg-primary transform hover:scale-105 transition-all shadow-lg"
             >
-              {isEditing ? 'Yangilash' : 'Qo&apos;shish'}
+              {isEditing ? 'Yangilash' : 'Qo\'shish'}
             </button>
             {isEditing && (
               <button
                 type="button"
                 onClick={resetForm}
-                className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                className="px-6 py-2 bg-primary/30 text-white rounded-lg hover:bg-primary/40 shadow-lg"
               >
                 Bekor qilish
               </button>
@@ -209,21 +223,22 @@ export default function AdminPage() {
         </form>
 
         {/* Agents Table */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-primary-dark/90 dark:bg-primary-dark/95 backdrop-blur-sm rounded-lg shadow-xl border border-primary/20 dark:border-primary-light/20 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-primary/20">
                 <tr>
-                  <th className="py-3 px-4 text-left">Ism</th>
-                  <th className="py-3 px-4 text-left">Telefon</th>
-                  <th className="py-3 px-4 text-left">Manzil</th>
-                  <th className="py-3 px-4 text-left">Telegram</th>
-                  <th className="py-3 px-4 text-left">Holati</th>
-                  <th className="py-3 px-4 text-left">Qo&apos;shilgan sana</th>
-                  <th className="py-3 px-4 text-left">Amallar</th>
+                  <th className="py-3 px-4 text-left text-white">Ism</th>
+                  <th className="py-3 px-4 text-left text-white">Telefon</th>
+                  <th className="py-3 px-4 text-left text-white">Manzil</th>
+                  <th className="py-3 px-4 text-left text-white">Telegram</th>
+                  <th className="py-3 px-4 text-left text-white">Holati</th>
+                  <th className="py-3 px-4 text-left text-white">Tartib</th>
+                  <th className="py-3 px-4 text-left text-white">Qo&rsquo;shilgan sana</th>
+                  <th className="py-3 px-4 text-left text-white">Amallar</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-primary/20">
                 {agents.map((agent) => (
                   <tr key={agent.id} className="hover:bg-gray-50">
                     <td className="py-3 px-4">{agent.name}</td>
@@ -239,6 +254,7 @@ export default function AdminPage() {
                         {agent.status === 'active' ? 'Faol' : 'Faol emas'}
                       </span>
                     </td>
+                    <td className="py-3 px-4">{agent.order || 0}</td>
                     <td className="py-3 px-4">
                       {new Date(agent.createdAt).toLocaleDateString()}
                     </td>
@@ -246,7 +262,7 @@ export default function AdminPage() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEdit(agent)}
-                          className="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200"
+                          className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-lg hover:bg-primary/20"
                         >
                           Tahrirlash
                         </button>

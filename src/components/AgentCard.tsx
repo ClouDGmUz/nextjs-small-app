@@ -6,27 +6,23 @@ interface AgentCardProps {
 
 export default function AgentCard({ agent }: AgentCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+    <div className="bg-secondary/90 backdrop-blur-sm rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow border border-white/10">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <h3 className="text-xl font-semibold text-gray-900">{agent.name}</h3>
-          <p className="text-sm text-gray-500 mt-1">{agent.location}</p>
+          <h3 className="text-xl font-semibold text-primary-dark dark:text-white">{agent.name}</h3>
+          <p className="text-sm text-primary-dark/70 dark:text-white/70 mt-1">{agent.location}</p>
         </div>
         <span 
-          className={`px-3 py-1 rounded-full text-sm ${
-            agent.status === 'active'
-              ? 'bg-green-100 text-green-800'
-              : 'bg-red-100 text-red-800'
-          }`}
+          className={`px-3 py-1 rounded-full text-sm ${agent.status === 'active' ? 'bg-primary-light/20 text-primary-light' : 'bg-red-100 text-red-800'}`}
         >
-          {agent.status}
+          {agent.status === 'active' ? 'Faol' : 'Faol emas'}
         </span>
       </div>
 
       <div className="mt-4 space-y-2">
         <a 
           href={`tel:${agent.phoneNumber}`}
-          className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+          className="flex items-center text-primary-dark dark:text-white/80 hover:text-primary-light transition-colors"
         >
           <svg
             className="w-5 h-5 mr-2"
@@ -49,7 +45,7 @@ export default function AgentCard({ agent }: AgentCardProps) {
             href={`https://t.me/${agent.telegram.replace('@', '')}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+            className="flex items-center text-primary-dark dark:text-white/80 hover:text-primary-light transition-colors"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -63,8 +59,8 @@ export default function AgentCard({ agent }: AgentCardProps) {
         )}
       </div>
 
-      <div className="mt-4 pt-4 border-t border-gray-100">
-        <div className="flex items-center text-sm text-gray-500">
+      <div className="mt-4 pt-4 border-t border-primary-dark/10 dark:border-white/10">
+        <div className="flex items-center text-sm text-primary-dark/70 dark:text-white/70">
           <svg
             className="w-4 h-4 mr-1"
             fill="none"

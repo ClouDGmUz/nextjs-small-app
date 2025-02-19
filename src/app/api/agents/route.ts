@@ -63,6 +63,7 @@ export async function PUT(
         location: body.location,
         status: body.status,
         telegram: body.telegram || null,
+        order: body.order,
       }
     });
 

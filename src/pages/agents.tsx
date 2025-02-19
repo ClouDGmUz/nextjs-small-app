@@ -15,7 +15,10 @@ export default function AgentsPage() {
         const response = await fetch('/api/agents');
         const data = await response.json();
         // Filter only active agents
-        setAgents(data.filter((agent: Agent) => agent.status === 'active'));
+        // Filter active agents and sort by order
+        const activeAgents = data.filter((agent: Agent) => agent.status === 'active');
+        const sortedAgents = activeAgents.sort((a: Agent, b: Agent) => (a.order || 0) - (b.order || 0));
+        setAgents(sortedAgents);
         setIsLoading(false);
       } catch {
         setError('Failed to load agents');
@@ -34,7 +37,10 @@ export default function AgentsPage() {
           <meta name="description" content="Condorning professional agentlari safiga qo'shiling" />
         </Head>
         <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-pulse text-gray-600">Yuklanmoqda...</div>
+          <div className="flex flex-col items-center space-y-4">
+            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <div className="text-blue-300 text-lg">Yuklanmoqda...</div>
+          </div>
         </div>
       </Layout>
     );
@@ -48,7 +54,7 @@ export default function AgentsPage() {
           <meta name="description" content="Condorning professional agentlari safiga qo'shiling" />
         </Head>
         <div className="min-h-screen flex items-center justify-center">
-          <div className="text-red-600">{error}</div>
+          <div className="text-red-400 bg-red-900/20 px-6 py-4 rounded-lg border border-red-800/50 backdrop-blur-sm">{error}</div>
         </div>
       </Layout>
     );
@@ -60,27 +66,27 @@ export default function AgentsPage() {
         <title>Agentlar - Condor</title>
         <meta name="description" content="Condorning professional agentlari safiga qo'shiling" />
       </Head>
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+      <div className="bg-gradient-to-br from-primary-dark via-primary to-primary-light min-h-screen py-16 backdrop-blur-sm bg-opacity-95">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 backdrop-blur-sm bg-white/5 p-8 rounded-2xl shadow-xl border border-white/10">
+            <h1 className="text-5xl font-bold text-white mb-6 tracking-tight">
               Bizning Agentlar
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
               Professional agentlarimiz bilan tanishing
             </p>
           </div>
 
           {agents.length === 0 ? (
-            <div className="text-center text-gray-500 py-12">
+            <div className="text-center text-secondary py-16 bg-primary/30 rounded-2xl backdrop-blur-sm border border-primary/50 shadow-lg">
               Hozirda faol agentlar mavjud emas
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {agents.map((agent) => (
                 <div 
                   key={agent.id}
-                  className="transform hover:scale-105 transition-transform duration-300"
+                  className="transform hover:scale-105 hover:rotate-1 transition-all duration-300 ease-out backdrop-blur-sm"
                 >
                   <AgentCard agent={agent} />
                 </div>
