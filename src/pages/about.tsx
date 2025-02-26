@@ -88,7 +88,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Queue Section */}
+          {/* Queue Section
           <div className="backdrop-blur-sm bg-white/5 rounded-2xl shadow-xl p-8 text-center border border-white/10 mb-16">
             <h2 className="text-3xl font-bold text-white mb-4">
               Navbat Holati
@@ -110,7 +110,7 @@ export default function AboutPage() {
                 <div className="text-white">Kutish vaqti (min)</div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Contact Section */}
           <div className="backdrop-blur-sm bg-white/5 rounded-2xl shadow-xl p-8 text-center border border-white/10">
