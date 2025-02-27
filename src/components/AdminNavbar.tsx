@@ -3,51 +3,24 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function Navbar() {
+export default function AdminNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/', label: 'Asosiy Menu' },
-    { href: '/agents', label: 'Agentlar' },
-    { href: '/about', label: 'Biz Haqimizda' },
-    { href: '/pre-order', label: 'Oldindan buyurtma' },
+    { href: '/admin', label: 'Agentlar' },
+    { href: '/admin/pre-orders', label: 'Buyurtmalar' },
   ];
 
   const isActiveLink = (path: string) => {
-    if (path === '/' && pathname !== '/') return false;
+    if (path === '/admin' && pathname !== '/admin') return false;
     return pathname?.startsWith(path);
   };
 
   return (
-    <nav className="bg-gradient-to-br from-primary via-primary-dark to-primary-dark shadow-lg backdrop-blur-sm bg-opacity-95 sticky top-0 z-50">
+    <nav className="bg-gradient-to-br from-primary-dark via-primary to-primary-light shadow-lg backdrop-blur-sm bg-opacity-95 sticky top-16 z-40 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo/Brand */}
-          <div className="flex items-center">
-            <Link 
-              href="/"
-              className="flex items-center space-x-3 group"
-            >
-              <span className="h-9 w-9 bg-white bg-opacity-10 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-opacity-20 group-hover:scale-105 shadow-lg">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                  />
-                </svg>
-              </span>
-              <span className="text-xl font-bold text-white transition-all duration-300 group-hover:text-opacity-90">Condor</span>
-            </Link>
-          </div>
-
+        <div className="flex justify-between h-12">
           {/* Desktop Navigation */}
           <div className="hidden sm:flex sm:items-center sm:space-x-2">
             {navLinks.map((link) => (
@@ -72,7 +45,7 @@ export default function Navbar() {
               className="inline-flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10 transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">Open admin menu</span>
               {isMobileMenuOpen ? (
                 <svg
                   className="h-6 w-6"

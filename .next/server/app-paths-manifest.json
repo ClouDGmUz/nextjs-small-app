@@ -1,7 +1,6 @@
 {
-  "/api/agents/[id]/route": "app/api/agents/[id]/route.js",
-  "/api/agents/route": "app/api/agents/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js"
+  "/api/pre-orders/route": "app/api/pre-orders/route.js",
+  "/api/pre-orders/[id]/route": "app/api/pre-orders/[id]/route.js",
+  "/api/agents/route": "app/api/agents/route.js"
 }
