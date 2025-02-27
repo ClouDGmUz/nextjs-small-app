@@ -1,1 +1,1 @@
-{"/api/agents/[id]/route":"/api/agents/[id]","/api/agents/route":"/api/agents","/favicon.ico/route":"/favicon.ico","/_not-found/page":"/_not-found","/page":"/"}
+{"/_not-found/page":"/_not-found","/api/admin/create/route":"/api/admin/create","/api/admin/login/route":"/api/admin/login","/api/agents/[id]/route":"/api/agents/[id]","/api/pre-orders/[id]/route":"/api/pre-orders/[id]","/api/agents/route":"/api/agents","/favicon.ico/route":"/favicon.ico","/api/pre-orders/route":"/api/pre-orders","/page":"/"}
