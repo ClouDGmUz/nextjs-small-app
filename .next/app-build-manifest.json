@@ -37,13 +37,6 @@
       "static/chunks/main-app-8e9305a7b0d9f81f.js",
       "static/chunks/app/api/agents/[id]/route-5f6250ddaa51e6ec.js"
     ],
-    "/api/pre-orders/[id]/route": [
-      "static/chunks/webpack-e200eb8bb137ee42.js",
-      "static/chunks/4bd1b696-692f10ba759dfb60.js",
-      "static/chunks/517-2685a4f087d222a4.js",
-      "static/chunks/main-app-8e9305a7b0d9f81f.js",
-      "static/chunks/app/api/pre-orders/[id]/route-21740cb5ce75b0b6.js"
-    ],
     "/api/agents/route": [
       "static/chunks/webpack-e200eb8bb137ee42.js",
       "static/chunks/4bd1b696-692f10ba759dfb60.js",
@@ -57,6 +50,13 @@
       "static/chunks/517-2685a4f087d222a4.js",
       "static/chunks/main-app-8e9305a7b0d9f81f.js",
       "static/chunks/app/api/pre-orders/route-d0e04da0079b0e52.js"
+    ],
+    "/api/pre-orders/[id]/route": [
+      "static/chunks/webpack-e200eb8bb137ee42.js",
+      "static/chunks/4bd1b696-692f10ba759dfb60.js",
+      "static/chunks/517-2685a4f087d222a4.js",
+      "static/chunks/main-app-8e9305a7b0d9f81f.js",
+      "static/chunks/app/api/pre-orders/[id]/route-21740cb5ce75b0b6.js"
     ],
     "/page": [
       "static/chunks/webpack-e200eb8bb137ee42.js",
