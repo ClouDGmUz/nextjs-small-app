@@ -1,7 +1,19 @@
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
 const readline = require('readline');
+const path = require('path');
+const fs = require('fs');
 
+// Load environment variables from .env file
+require('dotenv').config();
+
+// If DATABASE_URL is not set, set a default
+if (!process.env.DATABASE_URL) {
+  console.log('DATABASE_URL not found in environment, using default SQLite path');
+  process.env.DATABASE_URL = 'file:../prisma/dev.db';
+}
+
+// Create a new PrismaClient instance
 const prisma = new PrismaClient();
 
 const rl = readline.createInterface({
@@ -13,6 +25,8 @@ const question = (query) => new Promise((resolve) => rl.question(query, resolve)
 
 async function createAdmin() {
   try {
+    console.log('Creating admin user...');
+    
     const email = await question('Enter admin email: ');
     const password = await question('Enter admin password: ');
     const name = await question('Enter admin name (optional, press enter to skip): ');
