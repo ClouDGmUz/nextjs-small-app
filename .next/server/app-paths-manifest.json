@@ -1,11 +1,11 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/admin/create/route": "app/api/admin/create/route.js",
   "/api/admin/login/route": "app/api/admin/login/route.js",
-  "/api/agents/[id]/route": "app/api/agents/[id]/route.js",
   "/api/agents/route": "app/api/agents/route.js",
+  "/api/pre-orders/[id]/route": "app/api/pre-orders/[id]/route.js",
+  "/api/agents/[id]/route": "app/api/agents/[id]/route.js",
+  "/api/admin/create/route": "app/api/admin/create/route.js",
   "/api/pre-orders/route": "app/api/pre-orders/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/pre-orders/[id]/route": "app/api/pre-orders/[id]/route.js",
   "/page": "app/page.js"
 }
