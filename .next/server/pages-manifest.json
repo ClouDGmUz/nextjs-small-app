@@ -1,6 +1,6 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/agents": "pages/agents.js",
-  "/admin": "pages/admin.js"
+  "/admin": "pages/admin.js",
+  "/agents": "pages/agents.js"
 }

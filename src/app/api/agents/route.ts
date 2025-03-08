@@ -102,7 +102,7 @@ export async function PUT(
         status: body.status,
         telegram: body.telegram || null,
         order: body.order,
-        category: body.category || "General"
+        category: body.category || "Fergana"
       }
     });
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Agent } from '@/lib/types';
 import Head from 'next/head';
 import Layout from '@/components/Layout';
@@ -8,7 +8,8 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'> & { order?: number }>({    name: '',
+  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'> & { order?: number }>({    
+    name: '',
     phoneNumber: '',
     location: '',
     status: 'active',
@@ -16,6 +17,11 @@ export default function AdminPage() {
     order: 0,
     category: 'General'
   });
+  const [uploadError, setUploadError] = useState('');
+  const [uploadSuccess, setUploadSuccess] = useState('');
+  const [previewData, setPreviewData] = useState<any[]>([]);
+  const [showPreview, setShowPreview] = useState(false);
+
   // Fetch agents
   const fetchAgents = async () => {
     try {
@@ -27,6 +33,78 @@ export default function AdminPage() {
       setError('Agentlarni yuklashda xatolik yuz berdi');
       setIsLoading(false);
     }
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/agents/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+
+      if (response.ok) {
+        if (result.requireConfirmation) {
+          setPreviewData(result.preview);
+          setShowPreview(true);
+          setUploadError('');
+          setUploadSuccess('');
+        } else {
+          setUploadSuccess(result.message);
+          setUploadError('');
+          fetchAgents();
+        }
+      } else {
+        setUploadError(result.error || 'Failed to upload file');
+        setUploadSuccess('');
+      }
+    } catch {
+      setUploadError('Failed to upload file');
+      setUploadSuccess('');
+    }
+  };
+
+  const handleConfirmUpload = async () => {
+    const formData = new FormData();
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    if (fileInput?.files?.[0]) {
+      formData.append('file', fileInput.files[0]);
+      formData.append('confirm', 'true');
+      
+      try {
+        const response = await fetch('/api/agents/upload', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+        
+        if (response.ok) {
+          setUploadSuccess(result.message);
+          setUploadError('');
+          setShowPreview(false);
+          setPreviewData([]);
+          fetchAgents();
+        } else {
+          setUploadError(result.error || 'Failed to upload file');
+          setUploadSuccess('');
+        }
+      } catch {
+        setUploadError('Failed to upload file');
+        setUploadSuccess('');
+      }
+    }
+  };
+
+  const handleCancelUpload = () => {
+    setShowPreview(false);
+    setPreviewData([]);
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    if (fileInput) fileInput.value = '';
   };
 
   useEffect(() => {
@@ -57,7 +135,7 @@ export default function AdminPage() {
 
   // Delete agent
   const handleDelete = async (id: string) => {
-    if (!confirm('Agentni o&apos;chirishni xohlaysizmi?')) return;
+    if (!confirm('Agentni o\'chirishni xohlaysizmi?')) return;
     
     try {
       const response = await fetch(`/api/agents?id=${id}`, {
@@ -68,7 +146,7 @@ export default function AdminPage() {
       
       fetchAgents();
     } catch {
-      setError('Agentni o&apos;chirishda xatolik yuz berdi');
+      setError('Agentni o\'chirishda xatolik yuz berdi');
     }
   };
 
@@ -82,6 +160,7 @@ export default function AdminPage() {
       status: agent.status,
       telegram: agent.telegram || '',
       order: agent.order || 0,
+      category: agent.category || 'General'
     });
     setIsEditing(true);
   };
@@ -95,6 +174,7 @@ export default function AdminPage() {
       status: 'active',
       telegram: '',
       order: 0,
+      category: 'General'
     });
     setIsEditing(false);
     setError('');
@@ -123,6 +203,72 @@ export default function AdminPage() {
       
       <div className="max-w-7xl mx-auto p-6 bg-gradient-to-br from-primary-dark via-primary to-primary-light">
         <h1 className="text-3xl font-bold mb-8 text-white dark:text-secondary">Agentlarni Boshqarish</h1>
+
+        {/* Bulk Upload Section */}
+        <div className="mb-8 p-6 bg-primary-dark/90 dark:bg-primary-dark/95 backdrop-blur-sm rounded-lg shadow-xl border border-primary/20 dark:border-primary-light/20">
+          <h2 className="text-xl font-semibold mb-4 text-white dark:text-secondary">Excel Fayldan Import</h2>
+          
+          <div className="flex items-center space-x-4">
+            <input
+              type="file"
+              accept=".xlsx,.xls"
+              onChange={handleFileUpload}
+              className="text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-light"
+            />
+          </div>
+
+          {showPreview && previewData.length > 0 && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold mb-2 text-white">Ma'lumotlarni tasdiqlang</h3>
+              <div className="bg-primary-dark/50 p-4 rounded-lg max-h-60 overflow-y-auto mb-4">
+                <table className="w-full text-sm text-white">
+                  <thead>
+                    <tr className="border-b border-primary/30">
+                      {Object.keys(previewData[0] || {}).map((key) => (
+                        <th key={key} className="py-2 px-3 text-left">{key}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {previewData.map((row, index) => (
+                      <tr key={index} className="border-b border-primary/10">
+                        {Object.values(row).map((value: any, i) => (
+                          <td key={i} className="py-2 px-3">{value}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex space-x-3">
+                <button
+                  onClick={handleConfirmUpload}
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                >
+                  Tasdiqlash
+                </button>
+                <button
+                  onClick={handleCancelUpload}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                >
+                  Bekor qilish
+                </button>
+              </div>
+            </div>
+          )}
+
+          {uploadSuccess && (
+            <div className="mt-4 p-3 bg-green-900/20 text-green-400 rounded-lg border border-green-800/50">
+              {uploadSuccess}
+            </div>
+          )}
+
+          {uploadError && (
+            <div className="mt-4 p-3 bg-red-900/20 text-red-400 rounded-lg border border-red-800/50">
+              {uploadError}
+            </div>
+          )}
+        </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="mb-8 p-6 bg-primary-dark/90 dark:bg-primary-dark/95 backdrop-blur-sm rounded-lg shadow-xl border border-primary/20 dark:border-primary-light/20">
@@ -243,6 +389,7 @@ export default function AdminPage() {
                   <th className="py-3 px-4 text-left text-white">Telegram</th>
                   <th className="py-3 px-4 text-left text-white">Holati</th>
                   <th className="py-3 px-4 text-left text-white">Tartib</th>
+                  <th className="py-3 px-4 text-left text-white">Category</th>
                   <th className="py-3 px-4 text-left text-white">Qo&rsquo;shilgan sana</th>
                   <th className="py-3 px-4 text-left text-white">Amallar</th>
                 </tr>
@@ -264,6 +411,7 @@ export default function AdminPage() {
                       </span>
                     </td>
                     <td className="py-3 px-4">{agent.order || 0}</td>
+                    <td className="py-3 px-4">{agent.category || 'General'}</td>
                     <td className="py-3 px-4">
                       {new Date(agent.createdAt).toLocaleDateString()}
                     </td>
@@ -287,7 +435,7 @@ export default function AdminPage() {
                 ))}
                 {agents.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="py-8 px-4 text-center text-gray-500">
+                    <td colSpan={9} className="py-8 px-4 text-center text-gray-500">
                       Agentlar topilmadi
                     </td>
                   </tr>
