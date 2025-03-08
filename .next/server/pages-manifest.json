@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/agents": "pages/agents.js",
-  "/pre-order": "pages/pre-order.js",
-  "/about": "pages/about.js"
+  "/admin/login": "pages/admin/login.js",
+  "/admin": "pages/admin.js"
 }

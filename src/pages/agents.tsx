@@ -17,7 +17,7 @@ export default function AgentsPage() {
         // Filter only active agents
         // Filter active agents and sort by order
         const activeAgents = data.filter((agent: Agent) => agent.status === 'active');
-        const sortedAgents = activeAgents.sort((a: Agent, b: Agent) => (a.order || 0) - (b.order || 0));
+        const sortedAgents = activeAgents.sort((a: Agent, b: Agent) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER));
         setAgents(sortedAgents);
         setIsLoading(false);
       } catch {

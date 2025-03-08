@@ -76,6 +76,7 @@ export default function AdminPage() {
   // Edit agent
   const handleEdit = (agent: Agent) => {
     setFormData({
+      id: agent.id,
       name: agent.name,
       phoneNumber: agent.phoneNumber,
       location: agent.location,

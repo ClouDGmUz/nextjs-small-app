@@ -6,7 +6,7 @@ import { Agent } from "@/lib/types";
 export async function GET() {
   try {
     const agents = await prisma.agent.findMany({
-      orderBy: { createdAt: 'desc' }
+      orderBy: { order: 'asc' }
     });
     return NextResponse.json(agents);
   } catch {
@@ -30,6 +30,7 @@ export async function POST(
         location: body.location,
         status: body.status || "active",
         telegram: body.telegram || null,
+        order: body.order,
       }
     });
     return NextResponse.json(newAgent, { status: 201 });
@@ -55,6 +56,42 @@ export async function PUT(
       );
     }
 
+    // Validate required fields
+    if (!body.name || !body.phoneNumber || !body.location || !body.status) {
+      return NextResponse.json(
+        { error: "Name, phone number, location, and status are required" },
+        { status: 400 }
+      );
+    }
+
+    // Check if agent exists
+    const existingAgent = await prisma.agent.findUnique({
+      where: { id: body.id }
+    });
+
+    if (!existingAgent) {
+      return NextResponse.json(
+        { error: "Agent not found" },
+        { status: 404 }
+      );
+    }
+
+    // Validate status
+    if (!['active', 'inactive'].includes(body.status)) {
+      return NextResponse.json(
+        { error: "Status must be either 'active' or 'inactive'" },
+        { status: 400 }
+      );
+    }
+
+    // Validate order is a number
+    if (typeof body.order !== 'number') {
+      return NextResponse.json(
+        { error: "Order must be a number" },
+        { status: 400 }
+      );
+    }
+
     const updatedAgent = await prisma.agent.update({
       where: { id: body.id },
       data: {
@@ -68,10 +105,11 @@ export async function PUT(
     });
 
     return NextResponse.json(updatedAgent);
-  } catch {
+  } catch (error) {
+    console.error('Error updating agent:', error);
     return NextResponse.json(
       { error: "Failed to update agent" },
-      { status: 400 }
+      { status: 500 }
     );
   }
 }
