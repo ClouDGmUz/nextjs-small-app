@@ -31,6 +31,7 @@ export async function POST(
         status: body.status || "active",
         telegram: body.telegram || null,
         order: body.order,
+        category: body.category || "General"
       }
     });
     return NextResponse.json(newAgent, { status: 201 });
@@ -101,6 +102,7 @@ export async function PUT(
         status: body.status,
         telegram: body.telegram || null,
         order: body.order,
+        category: body.category || "General"
       }
     });
 

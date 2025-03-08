@@ -24,6 +24,7 @@ model Agent {
   status      String   @default("active")
   telegram    String?
   order       Int      @default(0)
+  category    String   @default("General")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

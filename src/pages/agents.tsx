@@ -14,8 +14,6 @@ export default function AgentsPage() {
       try {
         const response = await fetch('/api/agents');
         const data = await response.json();
-        // Filter only active agents
-        // Filter active agents and sort by order
         const activeAgents = data.filter((agent: Agent) => agent.status === 'active');
         const sortedAgents = activeAgents.sort((a: Agent, b: Agent) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER));
         setAgents(sortedAgents);
@@ -28,7 +26,15 @@ export default function AgentsPage() {
 
     fetchAgents();
   }, []);
-
+  // Group agents by category
+  const agentsByCategory = agents.reduce((acc: { [key: string]: Agent[] }, agent: Agent) => {
+    const category = agent.category || 'General';
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(agent);
+    return acc;
+  }, {});
   if (isLoading) {
     return (
       <Layout>
@@ -82,13 +88,22 @@ export default function AgentsPage() {
               Hozirda faol agentlar mavjud emas
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {agents.map((agent) => (
-                <div 
-                  key={agent.id}
-                  className="transform hover:scale-105 hover:rotate-1 transition-all duration-300 ease-out backdrop-blur-sm"
-                >
-                  <AgentCard agent={agent} />
+            <div className="space-y-16">
+              {Object.entries(agentsByCategory).map(([category, categoryAgents]) => (
+                <div key={category} className="space-y-8">
+                  <h2 className="text-3xl font-semibold text-white text-center py-4 border-b border-white/10">
+                    {category}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {categoryAgents.map((agent) => (
+                      <div
+                        key={agent.id}
+                        className="transform hover:scale-105 hover:rotate-1 transition-all duration-300 ease-out backdrop-blur-sm"
+                      >
+                        <AgentCard agent={agent} />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

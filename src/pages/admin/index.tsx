@@ -8,15 +8,14 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'> & { order?: number }>({
-    name: '',
+  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'> & { order?: number }>({    name: '',
     phoneNumber: '',
     location: '',
     status: 'active',
     telegram: '',
     order: 0,
+    category: 'General'
   });
-
   // Fetch agents
   const fetchAgents = async () => {
     try {
@@ -175,7 +174,16 @@ export default function AdminPage() {
                 placeholder="@username"
               />
             </div>
-            
+            <div>
+              <label className="block mb-1 text-white dark:text-secondary">Category</label>
+              <input
+                type="text"
+                value={formData.category || 'General'}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                className="w-full p-2 bg-white/10 border border-primary/30 text-white rounded focus:ring-2 focus:ring-primary-light focus:border-primary-light"
+                placeholder="Enter category"
+              />
+            </div>
             <div>
               <label className="block mb-1 text-white dark:text-secondary">Holati</label>
               <select
