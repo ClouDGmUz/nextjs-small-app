@@ -32,27 +32,6 @@ export default function Home() {
               </svg>
               Bizning Agentlar
             </Link>
-            <a 
-              href="https://dewpetroleum.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-6 py-3 border-2 border-secondary text-secondary rounded-lg hover:bg-secondary hover:text-primary-dark transition-all transform hover:scale-105 inline-flex items-center justify-center"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                />
-              </svg>
-              Dew Petroleum
-            </a>
           </div>
         </div>
 
