@@ -1,0 +1,171 @@
+10|condor  | Upload request received: { confirm: true, hasFile: true }
+10|condor  | Data extracted from Excel: { rowCount: 8 }
+10|condor  | Starting import with confirmation: { confirm: true, rowCount: 8 }
+10|condor  | Processing row 1: {
+10|condor  |   Name: 'Muxsinjon',
+10|condor  |   'phone number': 998971637007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent1',
+10|condor  |   order: 1,
+10|condor  |   category: 'Fergana'
+10|condor  | }
+10|condor  | Error importing row 1: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Muxsinjon',
+10|condor  |     'phone number': 998971637007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent1',
+10|condor  |     order: 1,
+10|condor  |     category: 'Fergana'
+10|condor  |   }
+10|condor  | }
+10|condor  | Processing row 2: {
+10|condor  |   Name: 'Elyorjon',
+10|condor  |   'phone number': 998971627007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent2',
+10|condor  |   order: 2,
+10|condor  |   category: 'Fergana'
+10|condor  | }
+10|condor  | Error importing row 2: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Elyorjon',
+10|condor  |     'phone number': 998971627007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent2',
+10|condor  |     order: 2,
+10|condor  |     category: 'Fergana'
+10|condor  |   }
+10|condor  | }
+10|condor  | Processing row 3: {
+10|condor  |   Name: 'Abdumutal',
+10|condor  |   'phone number': 998971647007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent3',
+10|condor  |   order: 3,
+10|condor  |   category: 'Fergana'
+10|condor  | }
+10|condor  | Error importing row 3: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Abdumutal',
+10|condor  |     'phone number': 998971647007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent3',
+10|condor  |     order: 3,
+10|condor  |     category: 'Fergana'
+10|condor  |   }
+10|condor  | }
+10|condor  | Processing row 4: {
+10|condor  |   Name: 'Omonulloh',
+10|condor  |   'phone number': 998881657007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent4',
+10|condor  |   order: 4,
+10|condor  |   category: 'Fergana'
+10|condor  | }
+10|condor  | Error importing row 4: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Omonulloh',
+10|condor  |     'phone number': 998881657007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent4',
+10|condor  |     order: 4,
+10|condor  |     category: 'Fergana'
+10|condor  |   }
+10|condor  | }
+10|condor  | Processing row 5: {
+10|condor  |   Name: 'Qahramon',
+10|condor  |   'phone number': 998886087007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent5',
+10|condor  |   order: 5,
+10|condor  |   category: 'Fergana'
+10|condor  | }
+10|condor  | Error importing row 5: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Qahramon',
+10|condor  |     'phone number': 998886087007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent5',
+10|condor  |     order: 5,
+10|condor  |     category: 'Fergana'
+10|condor  |   }
+10|condor  | }
+10|condor  | Processing row 6: {
+10|condor  |   Name: 'Jaloliddin',
+10|condor  |   'phone number': 998956597007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent6',
+10|condor  |   order: 6,
+10|condor  |   category: 'Fergana'
+10|condor  | }
+10|condor  | Error importing row 6: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Jaloliddin',
+10|condor  |     'phone number': 998956597007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent6',
+10|condor  |     order: 6,
+10|condor  |     category: 'Fergana'
+10|condor  |   }
+10|condor  | }
+10|condor  | Processing row 7: {
+10|condor  |   Name: 'Hasanjon',
+10|condor  |   'phone number': 998889037007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent7',
+10|condor  |   order: 7,
+10|condor  |   category: 'Fergana'
+10|condor  | }
+10|condor  | Error importing row 7: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Hasanjon',
+10|condor  |     'phone number': 998889037007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent7',
+10|condor  |     order: 7,
+10|condor  |     category: 'Fergana'
+10|condor  |   }
+10|condor  | }
+10|condor  | Processing row 8: {
+10|condor  |   Name: 'Abdulbosit',
+10|condor  |   'phone number': 998885667007,
+10|condor  |   location: 'Mavjud Emas',
+10|condor  |   status: 'active',
+10|condor  |   telegram: 'condor_agent_t1',
+10|condor  |   order: 1,
+10|condor  |   category: 'Tashkent'
+10|condor  | }
+10|condor  | Error importing row 8: {
+10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   rowData: {
+10|condor  |     Name: 'Abdulbosit',
+10|condor  |     'phone number': 998885667007,
+10|condor  |     location: 'Mavjud Emas',
+10|condor  |     status: 'active',
+10|condor  |     telegram: 'condor_agent_t1',
+10|condor  |     order: 1,
+10|condor  |     category: 'Tashkent'
+10|condor  |   }
+10|condor  | }

@@ -60,17 +60,20 @@ export async function POST(request: NextRequest) {
         // Get phone number from either camelCase or space-separated format
         const phoneNumber = row.phoneNumber || row['phone number'];
         
-        // Validate required fields
-        if (!row.name || !phoneNumber || !row.location) {
+        // Validate required fields and handle case-sensitivity
+        const name = row.name || row.Name;
+        const location = row.location || row.Location;
+        
+        if (!name || !phoneNumber || !location) {
           throw new Error('Name, phone number, and location are required');
         }
 
         // Create agent with validated data
         await prisma.agent.create({
           data: {
-            name: row.name,
+            name: name,
             phoneNumber: phoneNumber.toString(),
-            location: row.location,
+            location: location,
             status: row.status || 'active',
             telegram: row.telegram || null,
             order: typeof row.order === 'number' ? row.order : 0,
