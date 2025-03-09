@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PreviewData } from '@/lib/types';
 
 interface ExcelUploadProps {
   onUploadSuccess: (message: string) => void;
@@ -9,7 +10,7 @@ interface ExcelUploadProps {
 export default function ExcelUpload({ onUploadSuccess, onUploadError, onDataUpdate }: ExcelUploadProps) {
   const [uploadError, setUploadError] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState('');
-  const [previewData, setPreviewData] = useState<any[]>([]);
+  const [previewData, setPreviewData] = useState<PreviewData[]>([]);
   const [showPreview, setShowPreview] = useState(false);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,7 +123,7 @@ export default function ExcelUpload({ onUploadSuccess, onUploadError, onDataUpda
               <tbody className="divide-y divide-primary/20">
                 {previewData.map((row, index) => (
                   <tr key={index}>
-                    {Object.values(row).map((value: any, cellIndex) => (
+                    {Object.values(row).map((value: string | number | null, cellIndex) => (
                       <td key={cellIndex} className="px-4 py-2 text-sm text-white">
                         {value?.toString() || ''}
                       </td>
