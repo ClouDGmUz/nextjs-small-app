@@ -1,3 +1,6 @@
+10|condor  | Upload request received: { confirm: false, hasFile: true }
+10|condor  | Data extracted from Excel: { rowCount: 8 }
+10|condor  |  POST /api/agents/upload 200 in 92ms
 10|condor  | Upload request received: { confirm: true, hasFile: true }
 10|condor  | Data extracted from Excel: { rowCount: 8 }
 10|condor  | Starting import with confirmation: { confirm: true, rowCount: 8 }
@@ -11,7 +14,30 @@
 10|condor  |   category: 'Fergana'
 10|condor  | }
 10|condor  | Error importing row 1: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Muxsinjon",\n' +
+10|condor  |     '          phoneNumber: "998971637007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent1",\n' +
+10|condor  |     '          order: 1,\n' +
+10|condor  |     '          category: "Fergana",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Muxsinjon',
 10|condor  |     'phone number': 998971637007,
@@ -32,7 +58,30 @@
 10|condor  |   category: 'Fergana'
 10|condor  | }
 10|condor  | Error importing row 2: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Elyorjon",\n' +
+10|condor  |     '          phoneNumber: "998971627007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent2",\n' +
+10|condor  |     '          order: 2,\n' +
+10|condor  |     '          category: "Fergana",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Elyorjon',
 10|condor  |     'phone number': 998971627007,
@@ -53,7 +102,30 @@
 10|condor  |   category: 'Fergana'
 10|condor  | }
 10|condor  | Error importing row 3: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Abdumutal",\n' +
+10|condor  |     '          phoneNumber: "998971647007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent3",\n' +
+10|condor  |     '          order: 3,\n' +
+10|condor  |     '          category: "Fergana",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Abdumutal',
 10|condor  |     'phone number': 998971647007,
@@ -74,7 +146,30 @@
 10|condor  |   category: 'Fergana'
 10|condor  | }
 10|condor  | Error importing row 4: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Omonulloh",\n' +
+10|condor  |     '          phoneNumber: "998881657007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent4",\n' +
+10|condor  |     '          order: 4,\n' +
+10|condor  |     '          category: "Fergana",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Omonulloh',
 10|condor  |     'phone number': 998881657007,
@@ -95,7 +190,30 @@
 10|condor  |   category: 'Fergana'
 10|condor  | }
 10|condor  | Error importing row 5: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Qahramon",\n' +
+10|condor  |     '          phoneNumber: "998886087007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent5",\n' +
+10|condor  |     '          order: 5,\n' +
+10|condor  |     '          category: "Fergana",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Qahramon',
 10|condor  |     'phone number': 998886087007,
@@ -116,7 +234,30 @@
 10|condor  |   category: 'Fergana'
 10|condor  | }
 10|condor  | Error importing row 6: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Jaloliddin",\n' +
+10|condor  |     '          phoneNumber: "998956597007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent6",\n' +
+10|condor  |     '          order: 6,\n' +
+10|condor  |     '          category: "Fergana",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Jaloliddin',
 10|condor  |     'phone number': 998956597007,
@@ -137,7 +278,30 @@
 10|condor  |   category: 'Fergana'
 10|condor  | }
 10|condor  | Error importing row 7: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Hasanjon",\n' +
+10|condor  |     '          phoneNumber: "998889037007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent7",\n' +
+10|condor  |     '          order: 7,\n' +
+10|condor  |     '          category: "Fergana",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Hasanjon',
 10|condor  |     'phone number': 998889037007,
@@ -158,7 +322,30 @@
 10|condor  |   category: 'Tashkent'
 10|condor  | }
 10|condor  | Error importing row 8: {
-10|condor  |   error: 'Name, phone number, and location are required',
+10|condor  |   error: '\n' +
+10|condor  |     'Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create()` invocation in\n' +
+10|condor  |     '/home/ubuntu/nextjs-small-app/.next/server/chunks/[root of the server]__4e5036._.js:153:158\n' +
+10|condor  |     '\n' +
+10|condor  |     "  150     throw new Error('Name, phone number, and location are required');\n" +
+10|condor  |     '  151 }\n' +
+10|condor  |     '  152 // Create agent with validated data\n' +
+10|condor  |     '→ 153 await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].agent.create({\n' +
+10|condor  |     '        data: {\n' +
+10|condor  |     '          name: "Abdulbosit",\n' +
+10|condor  |     '          phoneNumber: "998885667007",\n' +
+10|condor  |     '          location: "Mavjud Emas",\n' +
+10|condor  |     '          status: "active",\n' +
+10|condor  |     '          telegram: "condor_agent_t1",\n' +
+10|condor  |     '          order: 1,\n' +
+10|condor  |     '          category: "Tashkent",\n' +
+10|condor  |     '          ~~~~~~~~\n' +
+10|condor  |     '      ?   id?: String,\n' +
+10|condor  |     '      ?   createdAt?: DateTime,\n' +
+10|condor  |     '      ?   updatedAt?: DateTime\n' +
+10|condor  |     '        }\n' +
+10|condor  |     '      })\n' +
+10|condor  |     '\n' +
+10|condor  |     'Unknown argument `category`. Available options are marked with ?.',
 10|condor  |   rowData: {
 10|condor  |     Name: 'Abdulbosit',
 10|condor  |     'phone number': 998885667007,
@@ -169,3 +356,4 @@
 10|condor  |     category: 'Tashkent'
 10|condor  |   }
 10|condor  | }
+10|condor  | Import completed: { success: 0, errors: 8 }
