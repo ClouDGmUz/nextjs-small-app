@@ -6,7 +6,8 @@ export type { PrismaAgent };
 
 export interface ExcelRowData {
   name: string;
-  phoneNumber: string;
+  phoneNumber?: string;
+  'phone number'?: string;
   location: string;
   status?: string;
   telegram?: string | null;
@@ -14,4 +15,15 @@ export interface ExcelRowData {
   category?: string;
 }
 
-export interface PreviewData extends ExcelRowData {}
+export interface PreviewData {
+  name: string;
+  phoneNumber?: string;
+  'phone number'?: string;
+  location: string;
+  status?: string;
+  telegram?: string | null;
+  order?: number;
+  category?: string;
+  previewId?: string;
+  timestamp?: Date;
+}

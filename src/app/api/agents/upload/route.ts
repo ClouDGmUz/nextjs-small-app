@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import * as XLSX from 'xlsx';
-import { Agent } from "@/lib/types";
+import { ExcelRowData } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,12 +22,12 @@ export async function POST(request: NextRequest) {
     const buffer = await file.arrayBuffer();
     const workbook = XLSX.read(buffer, { type: 'array' });
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-    const data = XLSX.utils.sheet_to_json(worksheet);
+    const data = XLSX.utils.sheet_to_json(worksheet) as ExcelRowData[];
 
     // If not confirmed, return preview data
     console.log('Data extracted from Excel:', { rowCount: data.length });
     if (!confirm) {
-      const preview = data.map((row: any) => ({
+      const preview = data.map((row: ExcelRowData) => ({
         name: row.name,
         phoneNumber: (row.phoneNumber || row['phone number'])?.toString(),
         location: row.location,
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     // Process each row
     console.log('Starting import with confirmation:', { confirm, rowCount: data.length });
     for (let i = 0; i < data.length; i++) {
-      const row = data[i] as any;
+      const row: ExcelRowData = data[i];
       try {
         // Log the row data to see what we're working with
         console.log(`Processing row ${i+1}:`, row);
@@ -61,8 +61,8 @@ export async function POST(request: NextRequest) {
         const phoneNumber = row.phoneNumber || row['phone number'];
         
         // Validate required fields and handle case-sensitivity
-        const name = row.name || row.Name;
-        const location = row.location || row.Location;
+        const name = row.name;
+        const location = row.location;
         
         if (!name || !phoneNumber || !location) {
           throw new Error('Name, phone number, and location are required');

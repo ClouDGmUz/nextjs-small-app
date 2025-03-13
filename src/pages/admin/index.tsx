@@ -1,14 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
-import { Agent } from '@/lib/types';
 import Head from 'next/head';
 import Layout from '@/components/Layout';
+import { Agent, PreviewData } from '@/lib/types';
+import useSWR, { mutate as swr_mutate } from 'swr';
 
 export default function AdminPage() {
+  const { data: swrAgents, mutate } = useSWR<Agent[]>('/api/agents', async (url: string) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  });
+
   const [agents, setAgents] = useState<Agent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<Omit<Agent, 'id' | 'createdAt' | 'updatedAt'> & { order?: number }>({    
+  const [formData, setFormData] = useState<Omit<Agent, 'createdAt' | 'updatedAt'> & { order?: number }>({    
     name: '',
     phoneNumber: '',
     location: '',
@@ -19,7 +26,7 @@ export default function AdminPage() {
   });
   const [uploadError, setUploadError] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState('');
-  const [previewData, setPreviewData] = useState<any[]>([]);
+  const [previewData, setPreviewData] = useState<PreviewData[]>([]);
   const [showPreview, setShowPreview] = useState(false);
 
   // Fetch agents
@@ -108,8 +115,11 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    fetchAgents();
-  }, []);
+    if (swrAgents) {
+      setAgents(swrAgents);
+      setIsLoading(false);
+    }
+  }, [swrAgents]);
 
   // Create/Update agent
   const handleSubmit = async (e: React.FormEvent) => {
@@ -135,18 +145,22 @@ export default function AdminPage() {
 
   // Delete agent
   const handleDelete = async (id: string) => {
-    if (!confirm('Agentni o\'chirishni xohlaysizmi?')) return;
+    if (!window.confirm('Are you sure you want to delete this agent?')) return;
     
     try {
-      const response = await fetch(`/api/agents?id=${id}`, {
-        method: 'DELETE'
+      const response = await fetch(`/api/admin/agents/${id}`, {
+        method: 'DELETE',
       });
-
-      if (!response.ok) throw new Error('Failed to delete agent');
-      
-      fetchAgents();
-    } catch {
-      setError('Agentni o\'chirishda xatolik yuz berdi');
+  
+      if (response.ok) {
+        await mutate();
+        await fetchAgents();
+      } else {
+        const error = await response.json();
+        console.error('Failed to delete agent:', error);
+      }
+    } catch (error) {
+      console.error('Error deleting agent:', error);
     }
   };
 
@@ -232,7 +246,7 @@ export default function AdminPage() {
                   <tbody>
                     {previewData.map((row, index) => (
                       <tr key={index} className="border-b border-primary/10">
-                        {Object.values(row).map((value: any, i) => (
+                        {Object.values(row).map((value: string | number | null, cellIndex) => (
                           <td key={i} className="py-2 px-3">{value}</td>
                         ))}
                       </tr>
