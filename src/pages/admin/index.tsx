@@ -15,7 +15,7 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<Omit<Agent, 'createdAt' | 'updatedAt'> & { order?: number }>({    
+  const [formData, setFormData] = useState<Omit<Agent, 'createdAt' | 'updatedAt' | 'id'> & { id?: string; order?: number }>({    
     name: '',
     phoneNumber: '',
     location: '',
