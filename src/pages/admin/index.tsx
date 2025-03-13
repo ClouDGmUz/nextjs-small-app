@@ -247,7 +247,7 @@ export default function AdminPage() {
                     {previewData.map((row, index) => (
                       <tr key={index} className="border-b border-primary/10">
                         {Object.values(row).map((value: string | number | null, cellIndex) => (
-                          <td key={i} className="py-2 px-3">{value}</td>
+                          <td key={cellIndex} className="py-2 px-3">{value}</td>
                         ))}
                       </tr>
                     ))}
